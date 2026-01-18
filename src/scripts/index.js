@@ -82,7 +82,7 @@ const handleProfileFormSubmit = (evt) => {
       profileDescription.textContent = userData.about;
       closeModalWindow(profileFormModalWindow);
     })
-    .catch(err => console.log("Ошибка:", err))
+    .catch(() => {})
     .finally(() => submitButton.textContent = originalText);
 };
 
@@ -99,7 +99,7 @@ const handleAvatarFromSubmit = (evt) => {
       closeModalWindow(avatarFormModalWindow);
       avatarForm.reset();
     })
-    .catch(err => console.log("Ошибка:", err))
+    .catch(() => {})
     .finally(() => submitButton.textContent = originalText);
 };
 
@@ -175,7 +175,7 @@ const handleCardFormSubmit = (evt) => {
       cardForm.reset();
       clearValidation(cardForm, validationSettings);
     })
-    .catch(err => console.log("Ошибка:", err))
+    .catch(() => {})
     .finally(() => submitButton.textContent = originalText);
 };
 
@@ -310,8 +310,7 @@ function openStatistics() {
       fillStatisticsPopup(stats);
       openModalWindow(popupInfo);
     })
-    .catch(err => {
-      console.log('Ошибка статистики:', err);
+    .catch(() => {
       const cardsContainer = document.querySelector('#popular-cards-container');
       if (cardsContainer) {
         cardsContainer.innerHTML = '';
@@ -366,9 +365,7 @@ Promise.all([getCardList(), getUserInfo()])
       );
     });
   })
-  .catch(err => {
-    console.log('Ошибка загрузки:', err);
-  });
+  .catch(() => {});
 
 if (logo && popupInfo) {
   logo.addEventListener('click', openStatistics);
